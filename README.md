@@ -6,7 +6,7 @@ KeplerChatbot is a simple question-and-answer chatbot built with Python and Flas
 - Built using Python and Flask framework
 - Uses `rapidfuzz` for matching user questions to answers
 - Friendly and simple web interface
-- Local deployment (runs on your machine)
+- Runs locally on your machine
 
 ## 🧰 Technologies Used
 - Python
