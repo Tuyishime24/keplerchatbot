@@ -148,7 +148,7 @@
 <div class="chat-box">
   <h2>
     Kepler Chatbot
-    <img src="https://kepler.org/wp-content/uploads/2019/11/kepler_logo_blue_01.png" alt="Kepler Logo" class="logo" />
+    <img src="https://keplercollege.ac.rw/wp-content/uploads/2021/09/Kepler-Logo-1.png" alt="Kepler Logo" class="logo" />
   </h2>
 
   <!-- Quick Category Buttons -->
@@ -181,7 +181,6 @@
   const spinner = document.getElementById('loading-spinner');
   const typingIndicator = document.getElementById('typing-indicator');
 
-  // Add messages to chat
   function addMessage(text, type) {
     const div = document.createElement('div');
     div.classList.add('chat-entry');
@@ -190,7 +189,6 @@
     chatHistory.scrollTop = chatHistory.scrollHeight;
   }
 
-  // Handle form submission
   form.addEventListener('submit', function(e) {
     e.preventDefault();
     const question = input.value.trim();
@@ -198,7 +196,6 @@
     handleQuestion(question);
   });
 
-  // Main question handling
   function handleQuestion(question) {
     addMessage(question, 'question');
     input.value = '';
@@ -229,18 +226,15 @@
     });
   }
 
-  // Predefined questions
   function askQuick(question) {
     handleQuestion(question);
   }
 
-  // Clear chat
   clearBtn.addEventListener('click', () => {
     chatHistory.innerHTML = '';
     input.focus();
   });
 
-  // Welcome message
   window.addEventListener('load', () => {
     addMessage("👋 Hello! I’m Kepler Chatbot. Ask me anything about Admission, Orientation, or Programs.", 'answer');
     input.focus();
