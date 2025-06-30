@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template, jsonify
 from rapidfuzz import fuzz
 import json
+import os  # Needed for getting PORT from environment
 
 app = Flask(__name__)
 
@@ -39,6 +40,7 @@ def find_answer(user_question, category="all"):
             "- 🧭 Orientation\n"
             "- 📚 Programs\n"
         )
+
 @app.route("/", methods=["GET", "POST"])
 def home():
     if request.method == "POST":
@@ -52,13 +54,13 @@ def home():
             except Exception as e:
                 return jsonify({"answer": f"⚠️ Error: {str(e)}"}), 400
         else:
-            # Fallback for form submissions (not used with current frontend)
             question = request.form.get("question", "")
             answer = find_answer(question)
             return render_template("index.html", question=question, answer=answer)
 
-    # GET request: return chat UI
     return render_template("index.html")
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    # Use the port provided by Render
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
