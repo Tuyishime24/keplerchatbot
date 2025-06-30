@@ -15,16 +15,12 @@ def find_answer(user_question, category="all"):
     """
     user_question = user_question.lower().strip()
     best_score = 0
-    best_answer = "🤖 Sorry, I couldn't find an answer for that. Please try asking something else."
+    best_answer = None
 
-    # Filter questions by category if provided
-    if category != "all":
-        filtered_data = [
-            item for item in qa_data
-            if item.get("category", "").lower() == category.lower()
-        ]
-    else:
-        filtered_data = qa_data
+    filtered_data = (
+        [item for item in qa_data if item.get("category", "").lower() == category.lower()]
+        if category != "all" else qa_data
+    )
 
     for item in filtered_data:
         score = fuzz.partial_ratio(user_question, item["question"].lower())
@@ -32,8 +28,17 @@ def find_answer(user_question, category="all"):
             best_score = score
             best_answer = item["answer"]
 
-    return best_answer
+    print(f"User question: '{user_question}' | Best match score: {best_score}")  # optional
 
+    if best_score > 60:
+        return best_answer
+    else:
+        return (
+            "🤖 Sorry, I didn’t understand that. Try asking about:\n"
+            "- 🏫 Admission & Registration\n"
+            "- 🧭 Orientation\n"
+            "- 📚 Programs\n"
+        )
 @app.route("/", methods=["GET", "POST"])
 def home():
     if request.method == "POST":
