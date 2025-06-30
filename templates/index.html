@@ -30,6 +30,15 @@
       color: #fff;
       text-align: center;
       border-radius: 12px 12px 0 0;
+      position: relative;
+    }
+    h2 .logo {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 40px;
+      width: auto;
     }
     .category-buttons {
       display: flex;
@@ -137,7 +146,10 @@
 <body>
 
 <div class="chat-box">
-  <h2>Kepler Chatbot</h2>
+  <h2>
+    Kepler Chatbot
+    <img src="https://kepler.org/wp-content/uploads/2019/11/kepler_logo_blue_01.png" alt="Kepler Logo" class="logo" />
+  </h2>
 
   <!-- Quick Category Buttons -->
   <div class="category-buttons">
