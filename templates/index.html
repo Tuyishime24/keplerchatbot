@@ -26,7 +26,7 @@
     }
 
     .banner h1 {
-      color: #fff; /* changed to white */
+      color: #fff;
       font-size: 32px;
       margin: 0;
     }
@@ -95,11 +95,25 @@
 
     .answer {
       background: #e4e6eb;
-      color: #333;
-      padding: 8px 12px;
+      color: #222;
+      padding: 14px 16px;
+      font-size: 16px;
+      line-height: 1.8;
       border-radius: 18px 18px 18px 0;
       float: left;
       clear: both;
+      white-space: pre-line;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .answer a {
+      color: #0056b3;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .answer a:hover {
+      text-decoration: underline;
     }
 
     form {
@@ -138,15 +152,20 @@
       text-align: center;
       padding: 20px;
       font-size: 14px;
-      background-color: #28a745; /* changed footer background to green */
-      color: white;
+      background-color: #28a745; /* ✅ Green background */
+      color: #002855;            /* ✅ Dark blue text */
       width: 100%;
-      line-height: 1.6;
+      line-height: 1.8;
+      font-weight: 500;
     }
 
     footer a {
-      color: white;
+      color: #002855;            /* ✅ Dark blue links */
       text-decoration: underline;
+    }
+
+    footer a:hover {
+      color: #004080;
     }
   </style>
 </head>
@@ -189,7 +208,7 @@
     4️⃣ Visit us at KG 29 Ave 16, Kinyinya Sector, Gasabo District, Kigali
   </footer>
 
-  <!-- Script -->
+  <!-- JavaScript -->
   <script>
     const form = document.getElementById('chat-form');
     const input = document.getElementById('question-input');
@@ -199,7 +218,6 @@
     let selectedCategory = null;
     let lastWelcomeId = null;
 
-    // Add a message to chat history
     function addMessage(text, type, id = null) {
       if (id && document.getElementById(id)) return;
       const div = document.createElement('div');
@@ -210,10 +228,8 @@
       chatHistory.scrollTop = chatHistory.scrollHeight;
     }
 
-    // Show category welcome message
     function selectCategory(category) {
       selectedCategory = category;
-
       if (lastWelcomeId) {
         const old = document.getElementById(lastWelcomeId);
         if (old) old.remove();
@@ -228,7 +244,6 @@
       addMessage(welcomeText, 'answer', lastWelcomeId);
     }
 
-    // Remove welcome message when user starts typing
     input.addEventListener('input', () => {
       if (lastWelcomeId) {
         const welcomeMsg = document.getElementById(lastWelcomeId);
@@ -239,7 +254,6 @@
       }
     });
 
-    // Helper to simplify category string
     function simplifyCategory(fullCategory) {
       if (!fullCategory) return null;
       fullCategory = fullCategory.toLowerCase();
@@ -249,7 +263,6 @@
       return null;
     }
 
-    // On form submit: send question, show answer, update category if detected
     form.addEventListener('submit', function(e) {
       e.preventDefault();
       const question = input.value.trim();
@@ -293,7 +306,6 @@
       });
     });
 
-    // Clear chat and reset
     clearBtn.addEventListener('click', () => {
       chatHistory.innerHTML = '';
       selectedCategory = null;
@@ -301,7 +313,6 @@
       addMessage("👋 Welcome to Kepler Chatbot! Please select a category or ask your question.", 'answer');
     });
 
-    // Initial welcome message on page load
     window.addEventListener('load', () => {
       addMessage("👋 Welcome to Kepler Chatbot! Please select a category or ask your question.", 'answer');
     });
