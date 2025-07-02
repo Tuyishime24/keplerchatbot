@@ -32,7 +32,7 @@
       border-radius: 12px 12px 0 0;
       position: relative;
     }
-    h2 .logo {
+    h2 img.logo {
       position: absolute;
       right: 20px;
       top: 50%;
@@ -148,7 +148,7 @@
 <div class="chat-box">
   <h2>
     Kepler Chatbot
-    <img src="https://keplercollege.ac.rw/wp-content/uploads/2021/09/Kepler-Logo-1.png" alt="Kepler Logo" class="logo" />
+    <img src="{{ url_for('static', filename='logo.png') }}" alt="Kepler Logo" class="logo" />
   </h2>
 
   <!-- Quick Category Buttons -->
